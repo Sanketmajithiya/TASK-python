@@ -1,0 +1,56 @@
+{% extends "web/layout.html" %}
+
+{% block title %}
+    data
+{% endblock title %}
+
+{% block style %}
+<style> 
+    img{
+        width: 200px;
+    }
+</style>
+{% endblock style %}
+
+
+{% block content %}
+
+<form action="{% url 'dashboard' %}" >
+    <input type="text" name="search" placeholder="Search by name or email..."    >
+    <input type="submit" value="Search">
+    <a href="/add">Add Data</a>
+</form>
+<hr>
+
+  
+<table class="table table-light table-hover table-bordered" > 
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Profile</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>City</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stu in students %}
+        <tr>
+            <td>{{ stu.id }}</td>
+            <td><img src="{{ stu.profile.url }}" alt="Profile Image"></td>
+            <td>{{ stu.first_name }} {{ stu.last_name }}</td>
+            <td>{{ stu.email }}</td>
+            <td>{{ stu.password }}</td>
+            <td>{{ stu.City }}</td>
+            <td>
+                <a href="{% url 'edit' student_id=stu.id %}">Edit</a>                        
+                <a href="{% url 'delete' student_id=stu.id %}">Delete</a>
+            </td>
+        </tr>   
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
