@@ -49,10 +49,13 @@ def edit_page(request,pk):
 def UpdateData(request,pk):
     Udata = Student.objects.get(id=pk)
     Udata.Name = request.POST['name']
-    Udata.Image = request.POST['image']
+    Udata.Image = request.FILES['image']
     Udata.Email = request.POST['email']
     Udata.City = request.POST['city']
     Udata.Number = request.POST['number']
+    
+    if 'image' in request.FILES:
+        Udata.Image = request.FILES['image']
     # query for update 
     Udata.save()
     return redirect('showpage')
