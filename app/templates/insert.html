@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert - Form</title>
+</head>
+<body>
+    <center>
+        <h1>Insert - Form</h1>
+        <form action="{% url 'insert' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" name="name" id=""></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="text" name="email" id=""></td>
+                </tr>
+                <tr>
+                    <td>City</td>
+                    <td><input type="text" name="city" id=""></td>
+                </tr>
+                <tr>
+                    <td>Number</td>
+                    <td><input type="text" name="number" id=""></td>
+                </tr>
+                <tr>
+                    <td>Image</td>
+                    <td><input type="file" name="image" id=""></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="upload" id=""></td>
+                </tr>
+            </table>
+        </form>
+        {% if student %}
+            <h2>Uploaded Image</h2>
+            <img src="{{ student.Image.url }}" alt="{{ student.Name }}" width="200">
+        {% endif %}
+    </center>
+</body>
+</html>
